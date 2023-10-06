@@ -5,7 +5,7 @@ import cl from '../style/form.module.css';
 
 interface FormSelectProps<T>{
     label: string;
-    value: string;
+    value: T;
     setValue:(value: T) => void;
     options: T[];
 }
@@ -18,7 +18,7 @@ const FormSelect = <T extends string>({label, options, value, setValue, ...props
                 className={cl.labelWrap}>
                 <Form.Select 
                     aria-label="Floating label select example"
-                    className={cl.inputOn}
+                    className={cl.input}
                     value={value}
                     onChange={e => setValue(e.currentTarget.value as any)}>
                     {options.map(option => 

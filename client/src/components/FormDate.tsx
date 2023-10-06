@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import classNames from "classnames";
 import cl from '../style/form.module.css';
-import { ISOtoDate, formatDate, formatTime, dateToISO, timeToISO } from "../utils/date";
+import { ISOtoDate, dateToISO, msInYear, timeToISO } from "../utils/date";
 import { maxDateToPick } from "../utils/consts";
 
 interface IFormDate{
@@ -11,28 +11,12 @@ interface IFormDate{
     date: Date;
     setDate: (dateMS: number) => void;
     icon?: ReactElement;
-    editMode: boolean;
 }
 
 const FormDate:FC<IFormDate & React.HTMLAttributes<HTMLDivElement>> = 
-    ({title, date, setDate, icon, editMode, ...props}) => {
+    ({title, date, setDate, icon, ...props}) => {
     const curTimeRef = useRef<HTMLInputElement>(null);
     const curDateRef = useRef<HTMLInputElement>(null);
-/*
-    const timeHandler = (currentTime: string) => {
-        console.log('new time: ', currentTime);
-        const currentDate = dateToISO(date); // a string "yyyy:mm:dd"
-        console.log('full current date: ', currentDate + ' ' + currentTime);
-
-        const newDate = ISOtoDate(currentDate + ' ' + currentTime) // a Date object from a string "yyyy-mm-dd hh:ss"
-        setDate(newDate.getTime());
-    }
-    const dateHandler = (currentDate: string) => {
-        console.log('new date: ', currentDate);
-        const currentTime = timeToISO(date); // a string "hh:mm"
-        const newDate = ISOtoDate(currentDate + ' ' + currentTime) // a Date object from a string "yyyy-mm-dd hh:ss"
-        setDate(newDate.getTime());
-    }*/
 
     const saveDate = () => {
         const dateString = curDateRef.current?.value + ' ' + curTimeRef.current?.value; // a string "yyyy-mm-dd hh:ss"
@@ -54,14 +38,12 @@ const FormDate:FC<IFormDate & React.HTMLAttributes<HTMLDivElement>> =
                 <Form.Control 
                     ref={curDateRef}
                     className= {
-                        classNames(editMode ? cl.inputOn : cl.inputOff, cl.timeInput)}
+                        classNames(cl.input, cl.timeInput)}
                     type="date"
-                    min={dateToISO(new Date())}
+                    min={dateToISO(new Date(Date.now() - msInYear))}
                     max={maxDateToPick}
                     defaultValue={dateToISO(date)}
-                    //onKeyDown={e => e.preventDefault()}
-                    onBlur={saveDate}
-                    disabled={!editMode}/>
+                    onBlur={saveDate}/>
             </FloatingLabel>
 
             <FloatingLabel
@@ -76,11 +58,10 @@ const FormDate:FC<IFormDate & React.HTMLAttributes<HTMLDivElement>> =
                 <Form.Control 
                     ref={curTimeRef}
                     className= {
-                        classNames(editMode ? cl.inputOn : cl.inputOff, cl.timeInput)}
+                        classNames(cl.input, cl.timeInput)}
                     type="time"
                     defaultValue={timeToISO(date)}
-                    onBlur={saveDate}
-                    disabled={!editMode}/>
+                    onBlur={saveDate}/>
             </FloatingLabel>
         </Form.Group>
     );

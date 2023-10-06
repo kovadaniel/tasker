@@ -11,6 +11,12 @@ export const formatTime = (date: Date): string => {
     return `${hours}:${minutes}`
 }
 
+export const msInMinute = 1000 * 60;
+export const msInHour = msInMinute * 60;
+export const msInDay = msInHour * 24;
+export const msInYear = msInDay * 365;
+
+
 /**
  * 
  * @param start 
@@ -18,9 +24,7 @@ export const formatTime = (date: Date): string => {
  * @returns a string of day-hour-minute interval between two times
  */
 export const dmsInterval = (start:number, end:number) => {
-    const msInDay = 1000 * 60 * 60 * 24;
-    const msInHour = 1000 * 60 * 60;
-    const msInMinute = 1000 * 60;
+
 
     const interval = end - start;
     const days = Math.trunc(interval / msInDay);

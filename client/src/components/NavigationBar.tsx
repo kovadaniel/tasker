@@ -26,12 +26,16 @@ const NavigationBar = () => {
                         <Nav.Link href="#home" className={cl.nav}>Projects</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
-                <Button variant='dark' className='me-5' onClick={() => setShowCreateModal(true)}>
+                <Button 
+                    variant='dark' 
+                    className='me-5' 
+                    onClick={() => setShowCreateModal(true)}>
                     New task
                 </Button>
                 <TaskModal 
                     isVisible={showCreateModal} 
-                    setIsVisible={setShowCreateModal}/>
+                    setIsVisible={setShowCreateModal}
+                    creation={true}/>
 
                 <Form.Control
                     type="search"

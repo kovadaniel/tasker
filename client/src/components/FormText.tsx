@@ -18,7 +18,7 @@ const FormText:FC<IFormText & React.HTMLAttributes<HTMLDivElement>> =
                 label = {<span className='text-secondary'>{label}</span>}
             >
                 <Form.Control 
-                    className={cl.inputOn}
+                    className={cl.input}
                     type="text" 
                     placeholder=''
                     value={text}

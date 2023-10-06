@@ -7,11 +7,10 @@ interface IFormTextarea{
     text: string;
     setText: (task: string) => void;
     label: string;
-    editMode: boolean;
 }
 
 const FormTextarea:FC<IFormTextarea & React.HTMLAttributes<HTMLDivElement>> = 
-    ({text, setText, label, editMode, ...props}) => {
+    ({text, setText, label, ...props}) => {
     const ref = useRef<HTMLTextAreaElement >(null)
     const autoGrow = (element: HTMLElement) => {
         element.style.height = "0px";
@@ -19,19 +18,17 @@ const FormTextarea:FC<IFormTextarea & React.HTMLAttributes<HTMLDivElement>> =
     }
     useEffect(() => {
         ref.current && autoGrow(ref.current)
-    }, [ref, editMode])
+    }, [ref])
 
     return (
         <Form.Group {...props}>
-        {editMode 
-            ? 
             <FloatingLabel
                 className={cl.labelWrap}
                 label = {<p className='text-secondary'>{label}</p>}
             >
                 <Form.Control 
                     ref={ref}
-                    className={cl.inputOn}
+                    className={cl.input}
                     type="text"
                     as="textarea"
                     value={text}
@@ -41,10 +38,7 @@ const FormTextarea:FC<IFormTextarea & React.HTMLAttributes<HTMLDivElement>> =
                     }}
                     placeholder='Input your description'/>
             </FloatingLabel>
-            : 
-            <p className='mb-0'>{text}</p>
-        }
-    </Form.Group>
+        </Form.Group>
     );
 }
  

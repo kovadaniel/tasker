@@ -1,12 +1,11 @@
 import Modal from "react-bootstrap/Modal";
-import { ITask, PriorityEnum, StatusEnum } from "../models/ITask";
+import { ITask } from "../models/ITask";
 import { FC, useState} from 'react'
 import { useAppSelector } from "../hooks/useAppSelector";
 import { naturalIndexOf } from "../utils";
 import TaskForm from "./TaskForm";
 import Info from "./Info";
 import Button from "react-bootstrap/Button";
-import { IComment } from "../models/IComment";
 import { AiFillEdit, AiFillInfoCircle } from "react-icons/ai"
 
 import cl from '../style/modal.module.css'
@@ -15,33 +14,16 @@ interface ITaskModal{
     task?: ITask;
     isVisible: boolean,
     setIsVisible: (bool: boolean) => void,
-    editable?: boolean,
+    creation?: boolean,
 }
 
-const now = Date.now();
-
-const dummyTask = {
-    id: now,
-    title: "Task #" + now, 
-    description: '',
-    status: StatusEnum.DEVELOPMENT,
-    priority: PriorityEnum.LOW,
-    createdAt: now,
-    finishTime: now,
-    workingTime: 0,
-    subtaskIds: [],
-    supertaskId: null,
-    comments: [] as IComment[],
-    files: [] as File[],
-} as ITask;
-
-const TaskModal:FC<ITaskModal> = ({task = dummyTask, isVisible, setIsVisible, editable = false}) => {
+const TaskModal:FC<ITaskModal> = ({task, isVisible, setIsVisible, creation = false}) => {
     const {tasks} = useAppSelector(state => state.task)
     const hide = () => {
         setIsVisible(false);
     }
 
-    const [editMode, setEditMode] = useState(!editable)
+    const [editMode, setEditMode] = useState(creation)
     const changeMode = () => {
         setEditMode(!editMode);
     }
@@ -59,6 +41,7 @@ const TaskModal:FC<ITaskModal> = ({task = dummyTask, isVisible, setIsVisible, ed
         >
             <Modal.Header closeButton className={cl.header}>
                 <span className={cl.title}>{title ? 'Task #'+title : 'New task'}</span>
+                {!creation && 
                 <Button 
                     className={cl.edit}
                     variant="outline-light" 
@@ -67,16 +50,17 @@ const TaskModal:FC<ITaskModal> = ({task = dummyTask, isVisible, setIsVisible, ed
                     {editMode 
                         ? <AiFillInfoCircle className={cl.editIcon}/> 
                         : <AiFillEdit className={cl.editIcon}/>}
-                </Button>
+                </Button>}
             </Modal.Header>
-            {editMode
-            ? <Modal.Body key={task.id}>
-                <TaskForm task={task} editMode={editMode}/>
-              </Modal.Body>
-            : <Modal.Body key={task.id}>
-                <Info task={task}/>
-              </Modal.Body>
-            }
+
+            <Modal.Body>
+            {!editMode && task
+                ? <Info task={task}/>
+                : <TaskForm 
+                    task={task} 
+                    isCreation={creation}
+                    close={hide}/>}
+            </Modal.Body>
         </Modal>
     );
 }

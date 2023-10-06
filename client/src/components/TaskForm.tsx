@@ -1,5 +1,5 @@
 import { FC, useState } from 'react' 
-import { Button, Dropdown, Form } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 import { ITask, PriorityEnum, StatusEnum } from '../models/ITask';
 import classNames from 'classnames';
 
@@ -18,12 +18,16 @@ import { naturalIndexOf, notEmpty } from '../utils';
 import SearchedDropdown from './SearchedDropdown';
 import useTaskRelation from '../hooks/useTaskRelation';
 import InputFile from './UI/InputFile/InputFile';
+import { IComment } from '../models/IComment';
+import { msInHour } from '../utils/date';
 
 interface ITaskForm{
     task?: ITask;
-    editMode: boolean;
+    isCreation?: boolean;
+    close?: () => void;
 }
 
+/*
 const emptyTask: ITask = {
     id: Date.now(),
     title: '',
@@ -37,16 +41,39 @@ const emptyTask: ITask = {
     subtaskIds: [],
     supertaskId: null,
     comments: [],
-}
+}*/
 
-const TaskForm:FC<ITaskForm> = ({task = emptyTask, editMode}) => {
+const now = Date.now() + 3 * msInHour; // GMT+3
+
+const emptyTask = {
+    id: now,
+    title: "Task #" + now, 
+    description: '',
+    status: StatusEnum.QUEUE,
+    priority: PriorityEnum.LOW,
+    createdAt: now,
+    finishTime: now,
+    workingTime: 0,
+    subtaskIds: [],
+    supertaskId: null,
+    comments: [] as IComment[],
+    files: [] as File[],
+} as ITask;
+
+const TaskForm:FC<ITaskForm> = ({task = emptyTask, isCreation = false, close}) => {
     const {tasks} = useAppSelector(state => state.task)
     const [currentTask, setCurrentTask] = useState<ITask>(task);
-    const {setTask} = useActions()
+    const {setTask, setTasks} = useActions();
 
     const save = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault()
         setTask(currentTask);
+    }
+
+    const create = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        e.preventDefault();
+        setTasks([...tasks, currentTask]);
+        close && close();
     }
 
     const children = currentTask.subtaskIds.map(id => {
@@ -68,16 +95,14 @@ const TaskForm:FC<ITaskForm> = ({task = emptyTask, editMode}) => {
                 className="mb-1 d-flex align-items-center"
                 text={currentTask.description}
                 setText={description => setCurrentTask({...currentTask, description})}
-                label='Description'
-                editMode={editMode}/>
+                label='Description'/>
             <FormDate
                 className='mb-1 d-flex'
                 title="Start"
                 date={new Date(currentTask.createdAt)} 
                 setDate={dateMS => setCurrentTask({...currentTask, createdAt: dateMS})}
                 icon={<CiCalendarDate 
-                        className={classNames(cl.fieldIcon, "me-1")}/>}
-                editMode={editMode}/>
+                        className={classNames(cl.fieldIcon, "me-1")}/>}/>
 
             <FormDate
                 className='mb-1 d-flex'
@@ -85,8 +110,7 @@ const TaskForm:FC<ITaskForm> = ({task = emptyTask, editMode}) => {
                 date={new Date(currentTask.finishTime)} 
                 setDate={dateMS => setCurrentTask({...currentTask, finishTime: dateMS})}
                 icon={<GiFinishLine 
-                        className={classNames(cl.fieldIcon, "me-1")}/>}
-                editMode={editMode}/>
+                        className={classNames(cl.fieldIcon, "me-1")}/>}/>
 
             <FormSelect
                 className='mb-1'
@@ -102,8 +126,7 @@ const TaskForm:FC<ITaskForm> = ({task = emptyTask, editMode}) => {
                 value={currentTask.status}
                 setValue={(status) => setCurrentTask({...currentTask, status})}/>
 
-            {/*!!currentTask.subtaskIds.length && */}
-            <FormList 
+            {!isCreation && <FormList 
                 className='mb-1'
                 label="Subtasks"
                 items={children}
@@ -120,7 +143,7 @@ const TaskForm:FC<ITaskForm> = ({task = emptyTask, editMode}) => {
                             title: getAnchorTitle(naturalIndexOf(task, tasks), task.title)
                     }))}
                     setItem={relate}/> 
-            </FormList>
+            </FormList>}
 
             {!!currentTask.files.length && <FormList 
                 className='mb-1'
@@ -133,14 +156,13 @@ const TaskForm:FC<ITaskForm> = ({task = emptyTask, editMode}) => {
                     setFiles={(files) => setCurrentTask({...currentTask, files})}/>
 
             <Button 
-                disabled={JSON.stringify(task) === JSON.stringify(currentTask)}
+                disabled={!isCreation && JSON.stringify(task) === JSON.stringify(currentTask)}
                 variant="success" 
                 type="submit"
                 className='d-block ms-auto me-auto mt-3 w-25'
-                onClick={save}>
-                Save
+                onClick={isCreation ? create : save}>
+                {isCreation ?  'Create' : 'Save'}
             </Button>
-            
         </Form>
     );
 }

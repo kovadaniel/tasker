@@ -29,7 +29,6 @@ const TaskPanel:FC<ITaskPanel> = ({task}) => {
                 className={classNames(cl.priority, "ms-1")}/>
             <TaskModal 
                 task={task} 
-                editable={true}
                 isVisible={showModal} 
                 setIsVisible={setShowModal}/>
     </Card.Header>
