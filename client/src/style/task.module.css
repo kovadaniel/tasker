@@ -1,0 +1,37 @@
+.task{
+    position: relative;
+    height: auto;
+    /*cursor: drag;
+    transition: all .2s ease;*/
+    background-color: var(--dark-blue);
+    transition: all .3s ease;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.9;
+    }
+    50% {
+        opacity: 0.3;
+    }
+    100% {
+        opacity: 0.9;
+    }
+}
+  
+  
+.settings{
+    display: block;
+    width: auto;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.priority{
+    display: block!important;
+    width: 20px;
+    height: 10px;
+}

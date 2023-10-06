@@ -1,0 +1,169 @@
+[
+    {
+        "id": 1,
+        "title": "Wash dishes",
+        "description": "Wash, wash, wash dishes",
+        "createdAt": 1695676589946,
+        "workingTime": 604800000,
+        "finishTime": 1696791390000,
+        "priority": "HIGH",
+        "files": [],
+        "status": "QUEUE",
+        "subtaskIds": [5, 6, 7],
+        "supertaskId": null,
+        "comments": []
+    },
+    {
+        "id": 2,
+        "title": "Wash hands",
+        "description": "Wash, wash, wash hands",
+        "createdAt": 1695676589946,
+        "workingTime": 604800000,
+        "finishTime": 1696789390000,
+        "priority": "HIGH",
+        "files": [],
+        "status": "DEVELOPMENT",
+        "subtaskIds": [],
+        "supertaskId": null,
+        "comments": []
+    },
+    {
+        "id": 3,
+        "title": "Take a shower",
+        "description": "Everyday washing is very important",
+        "createdAt": 1695676589946,
+        "workingTime": 604800000,
+        "finishTime": 1696691390000,
+        "priority": "MIDDLE",
+        "files": [],
+        "status": "QUEUE",
+        "subtaskIds": [],
+        "supertaskId": null,
+        "comments": []
+    },
+    {
+        "id": 4,
+        "title": "Read a book",
+        "description": "Read something of russin classica literature. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum laboriosam quis dolorum doloremque culpa amet magnam asperiores, repudiandae ex qui a, blanditiis voluptas unde. Fugiat corporis optio beatae repellendus quidem, nulla consectetur doloribus omnis impedit, asperiores quo assumenda voluptate tenetur ipsam necessitatibus mollitia velit iusto deserunt rem! Dignissimos vero consectetur ut architecto quos dolore vel atque quo suscipit facilis neque ullam molestiae sed deserunt, et autem consequuntur minus iste impedit aspernatur maxime vitae. Animi ipsum, iste ad ullam deserunt itaque voluptatem nisi minus quod quo quae sed nemo, impedit sit placeat a adipisci tenetur assumenda velit labore veniam numquam expedita.",
+        "createdAt": 1695672589946,
+        "workingTime": 604800000,
+        "finishTime": 1695111490000,
+        "priority": "LOW",
+        "files": [],
+        "status": "QUEUE",
+        "subtaskIds": [],
+        "supertaskId": null,
+        "comments": [
+            {
+                "id": 1,
+                "user": {
+                    "name":"Andrew",
+                    "image":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Andreas_San_Giovanni_in_Laterano_2006-09-07.jpg/220px-Andreas_San_Giovanni_in_Laterano_2006-09-07.jpg"
+                },
+                "text": "Why should I do it?",
+                "comments": [
+                    {
+                        "id": 2,
+                        "user": {
+                            "name":"Phillip",
+                            "image":""
+                        },
+                        "text": "Because it is good for your mind",
+                        "comments": [
+                            {
+                                "id": 3,
+                                "user": {
+                                    "name": "Dan",
+                                    "image": ""
+                                },
+                                "text": "Absolutely agree",
+                                "comments": []
+                            }
+                        ]
+                    },
+                    {
+                        "id": 4,
+                        "user": {
+                            "name": "Andrew",
+                            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Andreas_San_Giovanni_in_Laterano_2006-09-07.jpg/220px-Andreas_San_Giovanni_in_Laterano_2006-09-07.jpg"
+                        },
+                        "text": "I am already quite clever",
+                        "comments": []
+                    },
+                    {
+                        "id": 5,
+                        "user": {
+                            "name":"Phillip",
+                            "image":""
+                        },
+                        "text": "Ok",
+                        "comments": []
+                    }
+                    
+                ]
+            },
+            {
+                "id": 6,
+                "user": {
+                    "name": "Dan",
+                    "image": ""
+                },
+                "text": "Thats a good idea!",
+                "comments": [
+                    {
+                        "id": 7,
+                        "user": {
+                            "name":"Andrew",
+                            "image":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Andreas_San_Giovanni_in_Laterano_2006-09-07.jpg/220px-Andreas_San_Giovanni_in_Laterano_2006-09-07.jpg"
+                        },
+                        "text": "I don't know",
+                        "comments": []
+                    }
+                ]
+            }
+        ] 
+    },
+    {
+        "id": 5,
+        "title": "Go to the wash-stand",
+        "description": "Make it fast",
+        "createdAt": 1695676589946,
+        "workingTime": 604800000,
+        "finishTime": 1696291390000,
+        "priority": "MIDDLE",
+        "files": [],
+        "status": "DONE",
+        "subtaskIds": [],
+        "supertaskId": 1,
+        "comments": []
+    },
+    {
+        "id": 6,
+        "title": "Take a spounge",
+        "description": "Take a new one",
+        "createdAt": 1695676589946,
+        "workingTime": 604800000,
+        "finishTime": 1696581390000,
+        "priority": "MIDDLE",
+        "files": [],
+        "status": "QUEUE",
+        "subtaskIds": [],
+        "supertaskId": 1,
+        "comments": []
+    },
+    {
+        "id": 7,
+        "title": "Squease some liquid soup on the spounge",
+        "description": "Make it proper - don't be scant",
+        "createdAt": 1695676589946,
+        "workingTime": 604800000,
+        "finishTime": 1696881390000,
+        "priority": "MIDDLE",
+        "files": [],
+        "status": "QUEUE",
+        "subtaskIds": [],
+        "supertaskId": 1,
+        "comments": []
+    }
+    
+]

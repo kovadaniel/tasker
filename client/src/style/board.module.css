@@ -1,0 +1,15 @@
+.board{
+    min-height: 400px;
+    background-color: var(--light-blue);
+    transition: all .3s ease;
+    margin-bottom: 0;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+  }
+  
+.title{
+  text-align: center;
+  color: white;
+  margin-right: .75rem;
+  margin-left: .75rem;
+}

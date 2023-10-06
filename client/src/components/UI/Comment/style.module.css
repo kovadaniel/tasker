@@ -1,0 +1,70 @@
+.section{
+    position: relative; 
+}
+.section::before{
+    content: "";
+    position: absolute;
+    left: .75rem;
+    /*top: 5%;*/
+
+    /*border-right: 1px solid linear-gradient();*/
+    background: linear-gradient(to bottom, var(--light-blue), rgba(255,255,255, 0.3) 10%, rgba(255,255,255, 0.3) 90%, var(--light-blue));
+    height: 100%;
+    width: 2px;
+}
+
+.container{
+    margin: .25rem 0;
+    padding: .5rem .75rem;
+    
+    display: flex;
+    align-items: flex-start;
+    border-radius: .5rem;
+    background-color: var(--dark-blue);
+    border: 0;
+}
+
+.image{
+    margin-right: .5rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: cadetblue;
+
+    object-position: center;
+}
+
+.content{
+    flex-grow: 1;
+    margin-bottom: 0;
+}
+
+.name{
+    font-size: .9rem;
+    margin-bottom: .1rem;
+}
+.text{
+    font-size: .8rem;
+    margin-bottom: .1rem;
+}
+.input{
+    padding-left: 2rem;
+}
+
+
+.panel{
+    display: flex;
+    justify-content: end;
+}
+.label{
+    display: flex;
+    cursor: pointer;
+}
+.panelIcon{
+    width: .75rem;
+    height: .75rem;
+}

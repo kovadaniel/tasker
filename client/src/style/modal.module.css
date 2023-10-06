@@ -1,0 +1,25 @@
+.taskModal .modal-content{
+    background-color: var(--light-blue);
+    color: white;
+}
+  
+.header{
+    /*background-color: var(--dark-blue);*/
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.edit{
+    border: 0!important;
+    margin-left: .5rem;
+}
+
+.editIcon{
+    font-size: 1.5rem;
+}
+
+.title{
+    font-size: 1.5rem;
+}
+

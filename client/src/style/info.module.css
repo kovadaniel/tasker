@@ -1,0 +1,46 @@
+.row::after{
+    content: "";
+    display: block;
+    border-bottom: 1px solid rgba(255, 255, 255, .3);
+    width: 95%;
+    margin: .5rem auto;
+}
+
+.row:last-child:after{
+    content: none;
+}
+
+.labelWrap{
+    display: flex;
+    align-items: center;
+    margin-bottom: .5rem;
+}
+.icon{
+    margin-right: .25rem;
+    margin-bottom: .10rem;
+    color: rgba(255, 255, 255, .8);
+}
+.label{
+    width: auto;
+    color: rgba(255, 255, 255, .8);
+}
+
+.content{
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+}
+
+.singleRow .content{
+    width: auto;
+}
+.singleRow .labelWrap{
+    width: auto;
+    margin-bottom: 0;
+}
+
+.commentPanel{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}

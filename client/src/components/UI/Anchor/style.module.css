@@ -1,0 +1,40 @@
+.container{
+    padding: .5rem .75rem;
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--dark-blue);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.container:active{
+    box-shadow: 3px 3px 5px inset black;
+}
+
+.content{
+
+    font-size: .9rem;
+}
+
+.close{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 100%;
+    margin-left: .5rem;
+    opacity: 0;
+    transition: all .3s ease;
+}
+.close:active{
+    color: rgba(255, 255, 255, .5);
+}
+
+.container:hover .close{
+    opacity: 1;
+}
+/*
+.container:active .close{
+    transition: all 0 ease!important;
+    opacity: 0.1;
+}*/

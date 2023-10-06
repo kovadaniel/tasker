@@ -1,0 +1,14 @@
+.textarea{
+    resize: none;
+    font-size: .8rem;
+}
+
+.icon{
+    width: 1.5rem;
+    height: 1.5rem;
+    transition: all .3s ease;
+}
+
+.button:hover .icon{
+    transform: scale(1.1);
+}

@@ -1,0 +1,54 @@
+.inputOff, .inputOff:focus{
+    background-color: transparent!important;
+    border: 0;
+    color: white; 
+}
+
+.inputOn, .inputOn:focus{
+    background-color: var(--dark-blue)!important;
+    border: 0;
+    color: white;
+    color-scheme: dark;
+}
+
+.labelWrap{
+    width: 100%;
+    margin-right: .5rem;
+}
+.labelWrap:last-child{
+    margin-right: 0;
+
+}
+.labelWrap > label::after{
+    background-color: transparent!important;
+}
+
+.fieldIcon{
+    width: 20px;
+    height: 20px;
+}
+
+.timeInput{
+    min-height: 70px!important;
+}
+
+.list{
+    padding: .5rem .75rem;
+    background-color: var(--dark-blue);
+    border-radius: .375rem;
+}
+
+.bgLight{
+    background-color: var(--gray)!important;
+}
+
+.smallLabel{
+    font-size: .85rem;
+    color: rgba(255, 255, 255, .5);
+}
+
+.listContent{
+    border-radius: .5rem;
+    box-shadow: 0 3px 3px inset rgba(0, 0, 0, .5);
+    padding: .5rem;
+}

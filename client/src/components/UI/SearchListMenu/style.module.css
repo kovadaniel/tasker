@@ -1,0 +1,13 @@
+.container{
+    padding: .5rem;
+    background-color: rgba(255, 255, 255, .9);
+}
+
+.search{
+    margin-bottom: .25rem;
+}
+
+.list{
+    padding-left: .25rem;
+    color: white;
+}

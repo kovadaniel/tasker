@@ -1,0 +1,19 @@
+.navbar{
+    height: var(--navbar-height);
+    background-color: var(--light-blue);
+    border-bottom-left-radius: .5rem;
+    border-bottom-right-radius: .5rem;
+}
+
+.title{
+    color: white;
+    text-transform: uppercase;
+}
+
+.nav{
+    color: white;
+}
+
+.input{
+    max-width: 250px;
+}
