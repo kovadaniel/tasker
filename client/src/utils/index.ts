@@ -25,8 +25,8 @@ export function notEmpty<TValue>(value: TValue | null | undefined): value is TVa
     return value !== null && value !== undefined;
 }
 
-export function naturalIndexOf<T>( el: T, arr: T[]):number {
-    return arr.indexOf(el) + 1;
+export function naturalIndexOf<T>( el: T, arr: T[]|unknown):number {
+    return (Array.isArray(arr)) ? arr.indexOf(el) + 1 : 0;
 }
 
 interface commentedType<T extends commentedType<T>>{

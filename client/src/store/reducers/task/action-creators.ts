@@ -1,5 +1,5 @@
 import { ITask } from "../../../models/ITask";
-import { FetchTasksAction, SetErrorAction, SetIsLoadingAction, SetTaskAction, SetTasksAction, TaskActionsEnum } from "./types";
+import { FetchTasksAction, SetErrorAction, SetIsLoadingAction, SetTaskAction, SetTasksAction, TaskActionsEnum, SaveTasksAction } from "./types";
 
 export const TaskActionCreators = {
     setTasks: (tasks: ITask[]): SetTasksAction => ({
@@ -21,5 +21,9 @@ export const TaskActionCreators = {
     
     fetchTasks: (): FetchTasksAction => ({
         type: TaskActionsEnum.FETCH_TASKS, 
+    }),
+    saveTasks: (tasks: ITask[]): SaveTasksAction => ({
+        type: TaskActionsEnum.SAVE_TASKS, 
+        payload: tasks,
     }),
 }

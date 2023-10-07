@@ -63,16 +63,22 @@ const emptyTask = {
 const TaskForm:FC<ITaskForm> = ({task = emptyTask, isCreation = false, close}) => {
     const {tasks} = useAppSelector(state => state.task)
     const [currentTask, setCurrentTask] = useState<ITask>(task);
-    const {setTask, setTasks} = useActions();
+    const {setTask, setTasks, saveTasks} = useActions();
 
     const save = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault()
         setTask(currentTask);
+        const newTasks = tasks.map(t => {
+            if(t.id === currentTask.id) return currentTask;
+            else return t;
+        })
+        saveTasks(newTasks);
     }
 
     const create = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
         setTasks([...tasks, currentTask]);
+        saveTasks([...tasks, currentTask]);
         close && close();
     }
 
